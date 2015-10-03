@@ -1,20 +1,24 @@
 $(document).ready(function() {
 
     var socket = io();
-    var casa = 'nada';
 
-    $('.usernameInput').mouseenter(function(){
-       console.log($(this).val());
-        socket.emit('new message', $(this).val());
+    socket.on('connect', function(){
+        console.log('Client connect OK');
+        init();
     });
 
-      // tell server to execute 'new message' and send along one parameter
-    socket.emit('new message', casa);
+    var init = function(){
+        $('#send').click(function(){
+            aviso($('#msg').val());
+        });
+    };
 
+    var aviso = function(msg){
+        socket.emit('aviso_de_prueba', msg);
+    };
 
-
-    // Whenever the server emits 'stop typing', kill the typing message
-    socket.on('stop typing', function (casa) {
+    socket.on('respuesta', function(msg){
+        $('#visor').append('<div style="height:50px; width:50px; background:grey;"'+'>El mensaje es:'+msg+'</div>');
     });
 });
 

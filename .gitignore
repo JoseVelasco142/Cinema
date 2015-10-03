@@ -1,5 +1,4 @@
 .log
-node_modules
-bin
-.idea
 .launcher
+/node_modules
+/.idea

@@ -1,12 +1,7 @@
 extends layout
 
 block content
-  ul.pages
-    li.chat.page
-      .chatArea
-        ul.messages
-      input.inputMessage(placeholder='Type here...')
-    li.login.page
-      .form
-        h3.title What's your nickname?
-        input.usernameInput(type='text', maxlength='14')
+  #container
+    #visor.col-xs-12
+    input#msg.input-lg.col-xs-10(type='text', value='Escribe algo')
+    input#send.btn.btn-info.col-xs-2(type='button', value='Enviar')
