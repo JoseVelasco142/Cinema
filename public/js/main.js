@@ -1,26 +1,87 @@
 $(document).ready(function() {
 
-    var socket = io();
-
-    socket.on('connect', function(){
-        console.log('Client connect OK');
-        init();
-    });
+    // Declaracion de variables
 
     var init = function(){
-        $('#send').click(function(){
-            aviso($('#msg').val());
-        });
+        // Prepara la interfaz
+        $('#sala','#datablock','#states').hide();
     };
 
-    var aviso = function(msg){
-        socket.emit('aviso_de_prueba', msg);
-    };
 
-    socket.on('respuesta', function(msg){
-        $('#visor').append('<div style="height:50px; width:50px; background:grey;"'+'>El mensaje es:'+msg+'</div>');
+    // Click en alguna pelicula
+    $('.film').click(function(){
+        $('#visor').hide();
+        $('#datablock', '#sala','#states' ).show();
     });
+
+    // Cerrar la vista de sala
+    $('#back').click(function(){
+        $('#sala','#states','#datablock').hide();
+        $('#visor').show();
+    });
+
+
+    // Creacion de los asientos
+    for (var j = 1; j <= 10; j++) {
+        for (var i = 1; i <= 16; i++) {
+
+    // Lo agrupa por columnas
+            if (i <= 4) {
+                $('#left-side').append('<div class="sit" id="sit-' + j + '-' + i + '">' + '</div>');
+            } else if (i >= 4 && i <= 12) {
+                $('#center').append('<div class="sit" id="sit-' + j + '-' + i + '">' + '</div>');
+            } else {
+                $('#right-side').append('<div class="sit" id="sit-' + j + '-' + i + '">' + '</div>');
+            }
+        }
+    }
+
+
+    var socket = io();
+
+    var sit=$('.sit');
+
+    // Test comunicación
+    socket.on('connect', function(){
+        console.log('Hello Server');
+    });
+
+    // Alguien reserva un asiento
+    sit.click(function(){
+        sitid = $(this).attr("id");
+        $('')
+
+    });
+
+
+    // Alguien focusea un asiento
+    sit.mouseenter(function(){
+        sitid = $(this).attr("id");
+        socket.emit('focusing', sitid);
+    });
+
+    // Focuseas focusea un asiento
+    sit.mouseleave(function(){
+        socket.emit('unfocusing', sitid);
+    });
+
+    //Alguien deja de focusear un asiento
+    socket.on('ReceiveFocused', function(sitid){
+        ID=$('#'+sitid);
+        ID.css('backgroundColor','orange');
+    });
+
+    //Alguien esta focuseando un asiento
+    socket.on('LeaveFocus', function(sitid){
+        ID=$('#'+sitid);
+        ID.css('backgroundColor','white');
+
+    });
+
+    init();
 });
+
+
 
 
 

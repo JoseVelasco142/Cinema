@@ -1,7 +1,39 @@
 extends layout
 
 block content
-  #container
-    #visor.col-xs-12
-    input#msg.input-lg.col-xs-10(type='text', value='Escribe algo')
-    input#send.btn.btn-info.col-xs-2(type='button', value='Enviar')
+    #container
+        #visor.col-md-10.col-xs-12
+            #film1.film.col-md-3.col-xs-6
+            #film2.film.col-md-3.col-xs-6
+            #film3.film.col-md-3.col-xs-6
+            #film4.film.col-md-3.col-xs-6
+
+        #sala.col-xs-8.col-xs-10
+            #left-side.col-xs-3
+            #center.col-xs-6
+            #right-side.col-xs-3
+            .relleno
+
+        #states.col-xs-8
+            #Free.col-xs-4
+                a   Libre
+                #blockFree.col-xs-4
+                .relleno
+            #Reserved.col-xs-4
+                a   Reservado
+                #blockReserved.col-xs-4
+                .relleno
+            #Focused.col-xs-4
+                a   Focuseado
+                #blockFocused
+                .relleno
+
+        #datablock.col-md-2.col-xs-10
+            a.col-xs-12
+                br
+                span.text-danger Asiento y fila
+            input.col-md-12.col-xs-6.btn(type="button", value="Confirmar")
+            img.col-md-1.col-xs-3.btn(src='/images/Info.png', id="info" alt='Info')
+            img.col-md-1.col-xs-3.btn(src='/images/back.png', id="back" alt='Back')
+
+

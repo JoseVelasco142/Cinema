@@ -3,7 +3,7 @@
 /** Module dependencies.*/
 var debug = require('debug')('socket:server'),
     app = require('../app'),
-    io = require('../io'),
+    io = require('../routes/io'),
     http = require('http'),
     port = normalizePort(process.env.PORT || '3000'),
     server = http.Server(app);
@@ -11,7 +11,7 @@ var debug = require('debug')('socket:server'),
 /** Setting the Port. */
 app.set('port', port);
 
-/** Attaching the HTTP server to SocketIO. */
+/** Attaching the HTTP server to SocketIO. Acopla*/
 io.attach(server);
 
 /** Listen on provided port, on all network interfaces. */
