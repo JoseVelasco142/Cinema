@@ -1,28 +1,24 @@
 $(document).ready(function() {
 
-    // Declaracion de variables
-
-    var init = function(){
+    function init(){
         // Prepara la interfaz
-        $('#sala','#datablock','#states').hide();
-    };
-
+        $('#sala, #datablock, #states').hide();
+    }
 
     // Click en alguna pelicula
     $('.film').click(function(){
         $('#visor').hide();
-        $('#datablock', '#sala','#states' ).show();
+        $('#datablock, #sala, #states' ).show();
     });
 
     // Cerrar la vista de sala
     $('#back').click(function(){
-        $('#sala','#states','#datablock').hide();
+        $('#sala, #states, #datablock').hide();
         $('#visor').show();
     });
 
-
     // Creacion de los asientos
-    for (var j = 1; j <= 10; j++) {
+    for (var j = 1; j <= 7; j++) {
         for (var i = 1; i <= 16; i++) {
 
     // Lo agrupa por columnas
@@ -36,42 +32,64 @@ $(document).ready(function() {
         }
     }
 
-
+    // Variables globales
     var socket = io();
-
     var sit=$('.sit');
+    var sitInfoBlock = $('.text');
 
     // Test comunicación
     socket.on('connect', function(){
         console.log('Hello Server');
     });
 
-    // Alguien reserva un asiento
+    // Tu marcas un asiento
     sit.click(function(){
-        sitid = $(this).attr("id");
-        $('')
-
+        selectedSit = $(this).attr("id");
+        ID=$('#'+selectedSit);
+        sitInfo = selectedSit.split('-');
+        sitInfoBlock.html('');
+        sitInfoBlock.html('Fila '+sitInfo[1]+' asiento nº '+sitInfo[2]);
     });
 
+    //Confirmas la reserva de un asiento
+    $('#confirm').click(function(){
+        if( sitInfoBlock.html() != '') {
+            socket.emit('reservation', selectedSit);
+            sitInfoBlock.html('');
+        }else{
+            alert('Debes marcar un asiento primero');
+        }
+    });
 
-    // Alguien focusea un asiento
+    //Alguien reserva un asiento
+    socket.on('reserve', function(selectedSit){
+        ID=$('#'+selectedSit);
+        ID.css('backgroundColor','red');
+    });
+
+    // Tu focuseas un asiento
     sit.mouseenter(function(){
         sitid = $(this).attr("id");
-        socket.emit('focusing', sitid);
+        ID=$('#'+sitid);
+        if(ID.css('background-color') == 'rgb(255, 255, 255)') {
+            socket.emit('focusing', sitid);
+        }
     });
 
-    // Focuseas focusea un asiento
+    // Dejas de focusear un asiento
     sit.mouseleave(function(){
-        socket.emit('unfocusing', sitid);
+        if(ID.css('backgroundColor') == 'rgb(255, 165, 0)') {
+            socket.emit('unfocusing', sitid);
+        }
     });
 
-    //Alguien deja de focusear un asiento
+    //Alguien esta focuseando un asiento
     socket.on('ReceiveFocused', function(sitid){
         ID=$('#'+sitid);
         ID.css('backgroundColor','orange');
     });
 
-    //Alguien esta focuseando un asiento
+    //Alguien deja de focusear un asiento
     socket.on('LeaveFocus', function(sitid){
         ID=$('#'+sitid);
         ID.css('backgroundColor','white');

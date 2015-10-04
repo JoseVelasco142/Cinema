@@ -3,37 +3,38 @@ extends layout
 block content
     #container
         #visor.col-md-10.col-xs-12
-            #film1.film.col-md-3.col-xs-6
-            #film2.film.col-md-3.col-xs-6
-            #film3.film.col-md-3.col-xs-6
-            #film4.film.col-md-3.col-xs-6
+            img#film1.film.col-md-3.col-xs-6(src='/images/hangover.jpg', alt='Hangover film')
+            img#film2.film.col-md-3.col-xs-6(src='/images/hotelT2.jpg',  alt='Hotel transilvania 2 film')
+            img#film3.film.col-md-3.col-xs-6(src='/images/SillentHill.jpg', alt='Sillent Hill 3D film')
+            img#film4.film.col-md-3.col-xs-6(src='/images/Watchmen.jpg',  alt='Watchmen film')
 
-        #sala.col-xs-8.col-xs-10
+        #datablock.col-md-10.col-xs-12
+            a.col-xs-8
+                br
+                span.text
+            input#confirm.col-xs-2.btn(type="button", value="Confirmar")
+            img.col-xs-1(src='/images/back.png', id="back", alt='Back')
+
+        #sala.col-md-10.col-xs-12
             #left-side.col-xs-3
             #center.col-xs-6
             #right-side.col-xs-3
             .relleno
 
-        #states.col-xs-8
-            #Free.col-xs-4
-                a   Libre
-                #blockFree.col-xs-4
-                .relleno
-            #Reserved.col-xs-4
-                a   Reservado
-                #blockReserved.col-xs-4
-                .relleno
-            #Focused.col-xs-4
-                a   Focuseado
-                #blockFocused
-                .relleno
+        #states.col-md-10.col-xs-12
 
-        #datablock.col-md-2.col-xs-10
-            a.col-xs-12
-                br
-                span.text-danger Asiento y fila
-            input.col-md-12.col-xs-6.btn(type="button", value="Confirmar")
-            img.col-md-1.col-xs-3.btn(src='/images/Info.png', id="info" alt='Info')
-            img.col-md-1.col-xs-3.btn(src='/images/back.png', id="back" alt='Back')
+            .col-xs-4
+                span.col-xs-10   Libre
+                #blockFree.col-xs-2
+
+            .col-xs-4
+                span.col-xs-10    Reservado
+                #blockReserved.col-xs-2
+
+            .col-xs-4
+                span.col-xs-10    Focuseado
+                #blockFocused.col-xs-2
+
+
 
 

@@ -6,64 +6,62 @@ body{
     margin-left: 12.5%;
 }
 
-.film {
-    border: 1px solid white;
-    height: 400px;
-    background: darkseagreen;
-    margin-top: 15%;
-    border-radius: 7px;
-}
 
+.film {
+    height: 375px;
+    background: darkgrey;
+    margin-top: 20%;
+}
 .film:hover{
     border-top: 20px;
     border-bottom: 20px;
-    border-radius: 15px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
     border-style: solid;
-    border-color: blanchedalmond;
+    border-top-color: blanchedalmond;
+    border-bottom-color: darkgrey;
 
-    -webkit-animation: mymove 3s 1;
-    -webkit-animation-delay: 0.1s;
+    -webkit-animation: mymove 2s 1;
+    -webkit-animation-delay: 0.05s;
     position: relative;
 }
 @keyframes mymove {
     from {bottom: 0px;}
-    to {bottom: 25px;}
+    to {bottom: 45px;}
 }
 @-webkit-keyframes mymove {
     from {bottom: 0px;}
-    to {bottom: 25px;}
+    to {bottom: 30px;}
 }
 
 
+
 #sala{
-    margin-top: 7.5%;
-    position: absolute;
+    margin-top: 3%;
     background: white;
     border-radius: 35px;
     -webkit-box-shadow: 0px 10px 10px 12px rgba(112,112,112,0.50);
     -moz-box-shadow: 0px 10px 10px 12px rgba(112,112,112,0.50);
     box-shadow: 0px 10px 10px 12px rgba(112,112,112,0.50);
 }
-
 #left-side, #center, #right-side{
     background: darkslateblue;
     border:5px solid white;
     margin-top:10px;
-    height: 500px;
+    height: 400px;
 }
-
 #center{
-    padding: 2%;
+    padding: 1.5%;
+    padding-top: 1%;
 }
-
 #left-side{
     border-top-left-radius: 35px;
     -moz-border-radius-topleft: 35px;
     border-bottom-left-radius: 35px;
     -moz-border-radius-bottomleft: 35px;
     padding-top: 2.5%;
-}
 
+}
 #right-side{
     border-top-right-radius: 35px;
     -moz-border-radius-topright: 35px;
@@ -72,73 +70,87 @@ body{
     padding-top: 2.5%;
 }
 
-#states {
-    margin-top: 3%;
-    margin-bottom: 2%;
-    margin-left: 4.5%;
-    height: 40px;
-    padding: 0.5%;
-    padding-top: 1.2%;
-    background: midnightblue;
-}
 
-#states div{
-    background: red;
-}
 
 #datablock{
     background: darkred;
     border:1px solid white;
-    margin-top: 10%;
-    height: 350px;
-    margin-left: 80%;
+    margin-top: 3%;
+    height: 85px;
     border-radius: 35px;
     -webkit-box-shadow: 0px 0px 15px 12px rgba(112,112,112,0.2);
     -moz-box-shadow: 13px 10px 15px 12px rgba(112,112,112,0.2);
     box-shadow: 0px 0px 12px 12px rgba(112,112,112,0.2);
 }
-
 #datablock a{
-    margin-top: 5%;
-    padding: 8%;
-    height: 175px;
-    width: 170px;
+    margin-top: 1.5%;
+    margin-right: 10%;
+    height: 55px;
+    width: 30%;
     background: antiquewhite;
-    border-radius: 25px;
-    float: right;
-}
-
-input[type="button"] {
-    margin-top: 5%;
-    margin-bottom: 10%;
-    height: 60px;
-    background : antiquewhite;
+    border-radius: 20px;
+    color:black;
     font-weight: bolder;
-}
+    text-align: center;
 
-#back, #info{
-    margin-top:3%;
-    margin-left: 8%;
+}
+#confirm {
+    margin-top: 1.5%;
+    margin-right: 34%;
+    height: 55px;
+    background : darkslateblue;
+    font-weight: bolder;
+    border-radius: 20px;
+    color:black;
+    font-size: 1.5em;
+}
+#back{
+    margin-top:1%;
+    margin-left: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
     height: 65px;
-    width: 65px;
+    width: 70px;
     border-radius: 50%;
     background: antiquewhite;
 }
+#back:hover, #confirm:hover{border:5px solid black;}
+
+
+#states {
+    margin-top: 3%;
+    height: 50px;
+    background: darkslateblue;
+    border-radius: 25px;
+}
+#states div{
+    text-align: center;
+    padding: 1%;
+    font-size: 1.5em;
+    font-weight: bolder;
+}
+#states div span{
+    color:black;
+}
+#blockFocused, #blockReserved, #blockFree{
+    height: 30px;
+    width: 50px;
+    border:1px solid white;
+    border-radius: 5px;
+}
+#blockReserved{background: red;}
+#blockFocused{background: orange;}
+#blockFree{background: white;}
 
 .sit{
-    height: 40px;
-    width: 40px;
-    margin: 1%;
+    height: 45px;
+    width: 45px;
+    margin:1%;
     border:1px solid black;
     float:left;
     background: white;
     border-radius: 5px;
 }
-
 .sit:hover{
     border:2px solid black;
-}
-
-.relleno{
-    clear: both;
 }

@@ -1,9 +1,4 @@
 
-
-/*IO.on('connection', function(socket) {
-    console.log('Connected to Socket');
-});*/
-
 var io = require('socket.io')();
 
 io.sockets.on('connection', function(socket){
@@ -22,13 +17,11 @@ io.sockets.on('connection', function(socket){
         io.sockets.emit('LeaveFocus', sitid);
     });
 
+    // Servidor recibe confirmacion de reserva
+    socket.on('reservation', function(selectedSit){
+       io.sockets.emit('reserve', selectedSit);
+    });
 
 });
 
 module.exports = io;
-
-/*
-
- io.sockets.emit('an event sent to all connected clients');
- io.emit('an event sent to all connected clients');
- */
