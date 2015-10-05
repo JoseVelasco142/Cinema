@@ -9,12 +9,12 @@ io.sockets.on('connection', function(socket){
 
     // Servidor recibe asiento focuseado
     socket.on('focusing', function(sitid){
-        io.sockets.emit('ReceiveFocused', sitid);
+        socket.broadcast.emit('ReceivedFocus', sitid);
     });
 
     // Servidor recibe asiento dejado de focusear
     socket.on('unfocusing', function(sitid){
-        io.sockets.emit('LeaveFocus', sitid);
+        socket.broadcast.emit('LeaveFocus', sitid);
     });
 
     // Servidor recibe confirmacion de reserva

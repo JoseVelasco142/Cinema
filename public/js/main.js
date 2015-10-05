@@ -48,7 +48,11 @@ $(document).ready(function() {
         ID=$('#'+selectedSit);
         sitInfo = selectedSit.split('-');
         sitInfoBlock.html('');
-        sitInfoBlock.html('Fila '+sitInfo[1]+' asiento nº '+sitInfo[2]);
+        if(ID.css('background-color') == 'rgb(255, 0, 0)'){
+            alert('ese asiento ya esta reservado por alguien');
+        }else{
+            sitInfoBlock.html('Fila '+sitInfo[1]+' asiento nº '+sitInfo[2]);
+        }
     });
 
     //Confirmas la reserva de un asiento
@@ -78,13 +82,11 @@ $(document).ready(function() {
 
     // Dejas de focusear un asiento
     sit.mouseleave(function(){
-        if(ID.css('backgroundColor') == 'rgb(255, 165, 0)') {
-            socket.emit('unfocusing', sitid);
-        }
+        socket.emit('unfocusing', sitid);
     });
 
     //Alguien esta focuseando un asiento
-    socket.on('ReceiveFocused', function(sitid){
+    socket.on('ReceivedFocus', function(sitid){
         ID=$('#'+sitid);
         ID.css('backgroundColor','orange');
     });
@@ -92,8 +94,9 @@ $(document).ready(function() {
     //Alguien deja de focusear un asiento
     socket.on('LeaveFocus', function(sitid){
         ID=$('#'+sitid);
-        ID.css('backgroundColor','white');
-
+        if(ID.css('background-color') != 'rgb(255, 0, 0)') {
+            ID.css('backgroundColor','white');
+        }
     });
 
     init();
